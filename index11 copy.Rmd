@@ -1,0 +1,219 @@
+---
+title: "Computational Musicology Portofolio"
+author: "Kalle"
+date: "2/10/2021"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    storyboard: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(rbokeh)
+library(plotly)
+library(spotifyr)
+library(compmus)
+```
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Kwaito. A computational analysis of the the South African (sub)genre
+
+This computational analysis explores the authenticity of Kwaito and traces the origin of the genre within the context of the globalisation of music. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people say it's just Kwaito, You can't compare it to anything! The roots have remained a mystery for a long time now. In this computational analysis I will try to reveal Kwaito's roots to you by looking at the Spotify features of typical Kwaito tracks. These features I will then compare to the features of some classic House and classic Hip hop tracks.
+
+In the following tabs you’ll find a data analysis of Spotify’s track level features, such as tempo, valence and danceability. We’ll also inspect the chroma features of a classic Kwaito song and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining the different styles of musical analysis we hope te gain insights on the characteristics of the true Kwaito sound as well as the possibilities and limitations of the Spotify API.
+
+### A brief history of Kwaito
+
+The sound of Kwaito developed in the late 1980’s in the townships of South Africa and came to be the soundtrack for a youth culture movement. With it's peak in the 90's the Kwaito sound also started to spread globally. From then on, collectors and diggers across the globe started discovering the genre and finding its endless source of inspiration. As they do, Kwaito is still fuelling dance floors to this day.
+
+The broad and varied form of Kwaito makes it a hard to completely encapsulate as a genre. Kwaito fuses elements of traditional South African music with other genres throughout the African diaspora.
+
+Kwaito was originally heard as simply slowed-down house music. The repetitive four on the floor beat and swung high hat patterns are some of the characteristics that closely link to the classic structure of house music. What's for sure is that it holds the power to make dance floors shake. In general the sound is known for it's danceability, making it's way to the clubs and festival grounds all around the world.
+Others recognise a strong hip-hop influence. The late ‘80s the township slang of South Africa helped form kwaito's backbone, according to Mdluli, who is seen as one of the founders of the genre. Reflecting on social changes and cavernous cracks in South-African society, Kwaito is labeled by some as 'South African Hip-Hop'. The influence of Hip-Hop is coming to the surface as a number of Kwaito songs have clear references to the American hip-hop, paying homage to songs by the likes of Snoop Dogg and Grandmaster Flash.
+
+Defining the genre seems to be a struggling proces for some, making Kwaito a fascinating and compelling subject of research.
+In this portfolio a computational analysis is done to explore the authenticity and origins of the South African (sub)genre. In this computational analysis I will try to reveal Kwaito's roots to you by looking at the Spotify features of typical Kwaito tracks. These features I will then compare to the features of some classic House and classic Hip hop tracks. I Hope to discover which of the genres Kwaito has the most similarities to! Would it be Hip-Hop or would it be House? 
+
+
+### Hip-Hop, House or Kwaito?
+
+
+```{r}
+KWAITO <- get_playlist_audio_features("", "48lmHgufe6tzfltv1MtA00")
+HOUSE <- get_playlist_audio_features("", "37i9dQZF1DWTU3Zl0elDUa")
+HIPHOP <- get_playlist_audio_features("", "2MOqzRnIikBt5jiruMRv0r")
+
+figure(width = NULL, height = NULL) %>%
+  ly_points(tempo, danceability, data = HIPHOP, color = speechiness)
+# figure() %>%
+#   ly_points(tempo, danceability, data = HIPHOP,
+#     color = valence, glyph = instrumentalness )
+
+
+```
+*** 
+
+**Here we see a plot of the Hip-Hop playlist. The tempo as well as the dancibility we can see on the x and y. I chose these two specific features because I think they are the most characteristic for the genre in comparison the House and Kwaito. Instrumentalness because none of the tracks should be instrumental, this is what differentiates Hip-Hop from the other genres. Also Danceability because I was curious to what extend Hip-hop would be said to be more danceable and how it would compare to Kwaito**
+
+### Confusion Matrix of Hip-Hop, House and Kwaito
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(spotifyr)
+library(ggdendro)
+library(heatmaply)
+library(compmus)
+
+get_conf_mat <- function(fit) {
+  outcome <- .get_tune_outcome_names(fit)
+  fit %>% 
+    collect_predictions() %>% 
+    conf_mat(truth = outcome, estimate = .pred_class)
+}  
+
+get_pr <- function(fit) {
+  fit %>% 
+    conf_mat_resampled() %>% 
+    group_by(Prediction) %>% mutate(precision = Freq / sum(Freq)) %>% 
+    group_by(Truth) %>% mutate(recall = Freq / sum(Freq)) %>% 
+    ungroup() %>% filter(Prediction == Truth) %>% 
+    select(class = Prediction, precision, recall)
+}
+
+HIPHOP <- 
+  get_playlist_audio_features("spotify", "2MOqzRnIikBt5jiruMRv0r")
+HOUSE <- get_playlist_audio_features("spotify", "37i9dQZF1DWTU3Zl0elDUa")
+KWAITO <- get_playlist_audio_features("spotify", "48lmHgufe6tzfltv1MtA00")
+all_three_genres <-
+  bind_rows(
+    HIPHOP %>% mutate(playlist = "HIP HOP") %>% slice_head(n = 50),
+    HOUSE %>% mutate(playlist = "CLASSIC HOUSE") %>% slice_head(n = 50),
+    KWAITO %>% mutate(playlist = "SA KWAITO") %>% slice_head(n = 50)
+  )
+
+all_three_genres_features <-
+all_three_genres %>%
+  add_audio_analysis() %>% 
+  mutate(
+    playlist = factor(playlist),
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(
+        segments,
+        compmus_summarise, pitches,
+        method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean",
+      )
+  ) %>%
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) %>%
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>%
+  unnest(cols = c(pitches, timbre))
+
+all_three_genres_recipe <-
+  recipe(
+    playlist ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      C + `C#|Db` + D + `D#|Eb` +
+      E + `F` + `F#|Gb` + G +
+      `G#|Ab` + A + `A#|Bb` + B +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = all_three_genres_features,
+  ) %>%
+  step_center(all_predictors()) %>%
+  step_scale(all_predictors())
+
+all_three_genres_cv <- all_three_genres_features %>% vfold_cv(5)
+
+knn_model <-
+  nearest_neighbor(neighbors = 1) %>%
+  set_mode("classification") %>% 
+  set_engine("kknn")
+all_three_genres_knn <- 
+  workflow() %>% 
+  add_recipe(all_three_genres_recipe) %>% 
+  add_model(knn_model) %>% 
+  fit_resamples(
+    all_three_genres_cv, 
+    control = control_resamples(save_pred = TRUE)
+  )
+
+all_three_genres_knn %>% get_conf_mat()
+
+all_three_genres_knn %>% get_conf_mat() %>% autoplot(type = "mosaic")
+
+all_three_genres_knn %>% get_conf_mat() %>% autoplot(type = "heatmap")
+
+all_three_genres_knn %>% get_pr()
+
+tree_model <-
+  decision_tree() %>%
+  set_mode("classification") %>% 
+  set_engine("C5.0")
+all_three_genres_tree <- 
+  workflow() %>% 
+  add_recipe(all_three_genres_recipe) %>% 
+  add_model(tree_model) %>% 
+  fit_resamples(
+    all_three_genres_cv, 
+    control = control_resamples(save_pred = TRUE)
+  )
+
+all_three_genres_tree %>% get_pr()
+
+```
+*** 
+
+This classification algorithm is going to make predictions after the training. For me to be able to make a difference between Kwaito, House and Hip-Hop, I need to know for every track what it actually is. The classification algorithm is going to make a prediction for a new track to whether the track is Kwaito, House and Hip-Hop. Then, the question remains: how good is my classifier?
+To get the most accurate picture of what my classifier is doing I actually want to look at these per class. So if I want to compare Kwaito, House and Hip-Hop, I want to know for Hip-Hop what is my recall and what is my precision, for House what is my recall what is my precision etc.
+What do these mean? Well there are all based on the confusion matrix. This matrix is basically breaking things down into 4 possibilities. So you look at the so called ground truth class, what is it really?
+The difference between precision and recall is which mistakes you look at. These numbers are not the same. If you have very good recall, often the precision is not so great. Often if you have good precision, recall not so good. So, precision is when you look only at just the predictions, so of everything my classifier said was Hip Hop, how many of those really are Hip Hop? Recall is when you flip precision around. If I look at everything in my corpus that actually is Hip Hop, and how many of those did the classifier find?
+
+Now, we evaluate!
+
+Looking at the table I’m seeing my classifier did a pretty good job! This means it was pretty accurate in predicting the tracks genre. This would suggest that the three genres, when looking at their Spotify features. are not so similar after all. This is interesting in light of my research question, as I Kwaito is often described as a fusion of House and Hip-Hop.
+
+### Dynamic Time Warping, Snoop dogg song and Kwatio cover
+
+Using Dynamic Time Warping, we are able to compare the pitches of  two versions of a track in a single visualisation. If the two tracks have the same pitches, but are performed by different artist, we will see a diagonal line in the visualisation. Probably you will clearly see that both tracks are very different from each other, as the Kwaito cover is really a Kwaito version of the Snoop Dogg song.
+
+### Chroma
+
+### Self-Similarity
+
+### Conclusion
+#### 
+
+*stars around text for italics*
+**two stars for bold**
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
