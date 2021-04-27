@@ -26,7 +26,7 @@ library(spotifyr)
 library(compmus)
 ```
 
-Column {data-width=600}
+{data-width=600}
 -----------------------------------------------------------------------
 
 ### Kwaito. A computational analysis of the South African (sub)genre
@@ -35,6 +35,7 @@ Column {data-width=600}
 <div style="max-width:600px; margin: 0 auto;">
 <h2>Kwaito</h2>
 
+
 This computational analysis explores the musical features of "Kwaito", a South African music genre that emerged in Johannesburg during the 1990s. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people argue it is "just Kwaito, and you can't compare it to anything". The exact roots have remained a guess for most until today. In this musicological analysis I'll try to reveal some of Kwaito's mystery, by looking at the Spotify features of typical Kwaito music. These will then be compared to other related styles of music that came up around that time.
 
 In the following tabs you’ll find a data analysis of Spotify’s track level features such as tempo, valence and danceability. We’ll also inspect the chroma features of classic Kwaito songs and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining different forms of musical analysis we hope to gain insights in the characteristics of the true Kwaito sound. Through broad range of analytic scopes we also hope to discover to what and to what extend Kwaito links to other musical styles, like the two already mentioned. A third objective for this project is to use the process to evaluate and test the possibilities and limitations of the Spotify API.
@@ -42,6 +43,11 @@ In the following tabs you’ll find a data analysis of Spotify’s track level f
 ### A brief history of Kwaito
 
 ***
+
+<div style="max-width:600px; margin: 0 auto;">
+<h2>A brief history</h2>
+
+
 The sound of Kwaito developed in the late 1980’s in the townships of South Africa and came to be the soundtrack for a youth culture movement. With it's peak in the 90's the Kwaito sound also started to spread globally. From then on, collectors and diggers across the globe started discovering the genre and finding its endless source of inspiration. As they do, Kwaito is still fuelling dance floors around the world to this day. The broad and varied form of Kwaito makes it very hard to encapsulate completely as a genre. Kwaito fuses elements of traditional South African music with other genres throughout the African diaspora.
 
 Kwaito was originally heard as simply slowed-down house music. The repetitive four on the floor beat and swung high hat patterns are some of the characteristics that closely link to the classic structure of house music. What's for sure is that it holds the power to make dance floors shake. In general the sound is known for it's danceability, making it's way to the international clubs and festival circuit. Others recognise a strong hip-hop influence. The late ‘80s the township slang of South Africa has formed the backbone of Kwaito. Reflecting on social changes and cavernous cracks in South-African society, Kwaito is labeled by some as 'South African Hip-Hop'. It's influence becomes evident as a number of Kwaito songs have clear references to American hip-hop forms, paying homage to artists like Snoop Dogg and Grandmaster Flash.
@@ -125,7 +131,7 @@ When we look at speechiness we are also seeing some variation between the genres
 
 As for the danceability feature you can see far more value in Hip Hop and Kwaito tracks than in House tracks. This is remarkable because House music has a strong club culture. House as a genre I would associate most with dancing as House tracks are usually created for this purpose. Usually in my experience if there is House music played, regardless of where or the occasion, there is dancing. When Hip-Hop is played for exmample, again based on my own experience, this is not as often the case.
 
-### About tempo!
+### About tempo! {data-width=600}
 
 ```{r}
 get_tidy_audio_analysis('4PyhlL1vrSvPlhYLdphszr') %>% 
@@ -136,6 +142,7 @@ get_tidy_audio_analysis('4PyhlL1vrSvPlhYLdphszr') %>%
     labs(x = 'Time (s)', y = 'Tempo') +
     theme_classic()
 ```
+
 ***
 
 Tempograms provide insight in how tempo evolves during a musical piece. The x-axis contains the song duration and the y-axis contains the measured tempo in beats per minutes. Brighter areas indicate larger amounts of energy. 
@@ -182,6 +189,7 @@ compmus_long_distance(
   theme_minimal() +
   scale_fill_viridis_c(guide = NULL)
 ```
+
 ***
 
 One of the things you can do with Spotify API is visual Dynamic Time Warping. By using Dynamic Time Warping, you are able to compare the pitches of two versions of a track in a single visualization. You should be able to line up a cover version of a song with the original track, or even another cover version of the song. When two versions have the same pitch but are performed by different artist you'll see a diagonal line in the visualization. 
@@ -297,10 +305,11 @@ bind_rows(
   theme_classic() + 
   labs(x = "", y = "")
 ```
-***
 
+***
 The House track 'Big Fun', from Inner City is a classic. Looking at the matrix we can see repetition most of all. After 100 sec the rather famous break comes in. The synthesizers in the track drop out completely for about 20 seconds, after this little interlude the synths come back hard and the party can start again. This break can be seen in both the chroma- and the timbre matrix. In contrast to the Kwaito Matrix we don't really see a chorus or verse in this one. 
 The duration of the House track is just over 200 seconds, which is not too long for a House track. Often tracks in this genre have a repetitive intro and outro which is used to mix the track with another. I expect there to be a longer version as well that is played more in clubs.
+
 
 ### Self-Similarity: The chroma- and timbre features of a 'Classic" *Hip Hop* track
 
@@ -349,8 +358,8 @@ bind_rows(
   theme_classic() + 
   labs(x = "", y = "")
 ```
-***
 
+***
 We are looking at a 'Classic' Hip Hop track. The track goes by the title 'What's the Difference' and comes from the artist Dr. Dre. The matrices are able to pick up some of pattern, including the presentations of the chorus. It seems Hip-Hop song follows a similar pattern as the Kwaito song, with some sort of chorus, followed by a verse, chorus etc.
 
 The duration of 'What's the Difference' is nearly 250 seconds. This is pretty long for Hip-Hop, but not uncommon. Hip-Hop tracks from around the 'Dr Dre era' also were a bit longer compared to Hip-Hop nowadays.
@@ -477,6 +486,7 @@ all_three_genres_tree <-
 all_three_genres_tree %>% get_pr()
 
 ```
+
 *** 
 
 This classification algorithm is going to make predictions after the training. For me to be able to make a difference between Kwaito, House and Hip-Hop, I need to know for every track what it actually is. The classification algorithm is going to make a prediction for a new track to whether the track is Kwaito, House and Hip-Hop. Then, the question remains: how good is my classifier?
