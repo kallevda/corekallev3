@@ -68,7 +68,8 @@ The **speechiness** feature covers the **x-axes** and the **tempo** feature the 
 
 **Danceability**. The value for danceability is shown by lightness of color, lighter being valued as more danceable. This seemed like a relevant feature, since dance culture is closely linked to the cultural norms of the three genres we are focusing on.
 
-### Hip-Hop, House or Kwaito?
+
+### Hip-Hop, House or Kwaito? Comparing the track-level features {data-heith=300}
 
 ```{r}
 
@@ -129,7 +130,7 @@ Looking at the distribution for the y-axes we see a clear tempo difference betwe
 
 When we look at speechiness we are also seeing some variation between the genres. Hip hop tracks are valued most speechiness, next Kwaito, and coming in last House. All of the tracks from every genre are valued <0.30. According to the Spotify description of speechiness you could therefore only say 'they are likely to represent music and other non-speech-like tracks'. I was expecting to see more speechiness in the kwaito tracks, as Kwaito is often being described as "the South African Hip-Hop" and it is especially known for spoken lyrics and talk overs. Kwaito was eminently known as a way for people to get their voice heard, like a catalyst used for political purposes. This even got to the point Kwaito got banned for it by the South African government. However the speechiness feature doesn't really give us a real clue about these aspects of Kwaito.
 
-As for the danceability feature you can see far more value in Hip Hop and Kwaito tracks than in House tracks. This is remarkable because House music has a strong club culture. House as a genre I would associate most with dancing as House tracks are usually created for this purpose. Usually in my experience if there is House music played, regardless of where or the occasion, there is dancing. When Hip-Hop is played for exmample, again based on my own experience, this is not as often the case.
+As for the danceability feature you can see there is far more value in Hip Hop and Kwaito tracks than in House tracks. This is remarkable because House music has a strong club culture. House as a genre I would associate most with dancing, as House tracks are usually created for this purpose. Usually in my experience if there is House music played, regardless of where or the occasion, there is dancing. When Hip-Hop is played for example, again based on my own experience, this is not as often the case. Spotify describes danceability as 'how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity'. While there is something to say for the fact that dynamic music with lots of action and changes is making people move, it could be they underestimate the power of stable rythm repetitiveness that makes people dance as if in a trance.
 
 ### About tempo! {data-width=600}
 
@@ -147,11 +148,11 @@ get_tidy_audio_analysis('4PyhlL1vrSvPlhYLdphszr') %>%
 
 Tempograms provide insight in how tempo evolves during a musical piece. The x-axis contains the song duration and the y-axis contains the measured tempo in beats per minutes. Brighter areas indicate larger amounts of energy. 
 
-I was curious if Kwaito songs ar produced live or that it is fully digital and therefor synchronized to a fixed grid. 
+I was curious if Kwaito songs ar produced live or that it is fully digital and therefore synchronized to a fixed grid. 
 
 The tempogram is of a Kwaito song from the playlist. We are seeing a steady line that doesn't really change over time. This would suggest that the tempo remains stable over the course of the song. This indicates Kwaito is digitally produced rather than recorded with live instruments. To be sure I did a tempogram for a few other tracks and this seemed the case for most. 
 
-The tempo in bpm in this tempogram seems to be around 440, which is obviously very unlikely. Sometimes the tempo of a song is multiplied. With downtempo songs like soul or slow Hip-Hop this is often the case. It shows why beat analysis could be problematic. A fix for this could be to set a range in bpm of which you are sure the track is in, for example 50-200 bpm. I have seen programs, mostly DJ software, that actually are pretty good at BPM estimation. I guess this is one of the things that can therefore be improved in the Spotify API.
+The tempo in bpm in this tempogram seems to be around 440. This is obviously very unlikely. Sometimes the tempo of a song is multiplied. With downtempo songs like soul or slow Hip-Hop this is often the case. It shows why beat analysis could be problematic. A fix for this might be to set a range in bpm of which you are sure the track must be in, for example between 50-200 beats per minutes. I have seen programs, mostly DJ software, that actually are pretty good at bpm estimation. I guess this is one of the things that can therefore be improved in the Spotify API.
 
 ### Dynamic Time Warping, B.I.G vs Kwaito version
 
@@ -192,15 +193,16 @@ compmus_long_distance(
 
 ***
 
-One of the things you can do with Spotify API is visual Dynamic Time Warping. By using Dynamic Time Warping, you are able to compare the pitches of two versions of a track in a single visualization. You should be able to line up a cover version of a song with the original track, or even another cover version of the song. When two versions have the same pitch but are performed by different artist you'll see a diagonal line in the visualization. 
+One of the things you can do with Spotify API is visual Dynamic Time Warping. With Dynamic Time Warping you can compare the pitches of two tracks in a single visualization. You can for example line up a cover version of a song with the original track or even another cover version of the song, and see how they differ from each other. 
 
 To see if Kwaito differs a lot from Hip-Hop we are doing a test case with a classic Hip-Hop song: B.I.G.- Big Poppa, and a Kwaito version that uses the same melody: Sandy B - Student Night.
 
-As you can see both tracks are very different from each other which could suggest that the Kwaito cover is a lot different from a Hip-Hop song. However, we can't really generalize this to say all Kwaito songs differ a lot from Hip-Hop tracks. 
+A diagonal pattern would denote similarities between the two tracks. This is not observed, which implies significant differences. This could suggest that the Kwaito cover is a lot different from a Hip-Hop song. However, we can't really generalize this to say all Kwaito songs differ a lot from Hip-Hop tracks. 
 
-The fact that two tracks using the same melody sound so different you could see as an indication of their independence to each other. On the other hand you could see the use of a classic Hip-Hop sample as a Kwaito song as an indication that there is some sort of linkage between the genres. 
+The fact that two tracks using the same melody sound so different you could see as an indication of their independence to each other. On the other hand, you could say the use of a classic Hip-Hop sample by a Kwaito artist is an indication that there is a linkage between the genres. 
 
-### Self-Similarity: The chroma- and timbre features of a 'Classic" *Kwaito* track
+
+### Self-Similarity: The chroma- and timbre features of a 'Classic" **Kwaito** track
 
 ```{r}
 kwaito_typisch <-
@@ -250,15 +252,15 @@ bind_rows(
 
 ***
 
-To get some insights in the similarities and differences between Hip Hop, Kwaito and House we analyze two self-similarity matrices for a single track from each genre individually. Both the chroma and timbre matrices could be useful to understand the structure of a song. 
+To get some insights in the similarities and differences between Hip Hop, Kwaito and House we analyze two self-similarity matrices for a single track from each genre individually. Both the chroma and timbre matrices could be useful to understand the structure of a song. We give two plots for each track: the first being chroma, and the second timbre. By denoting patterns of similarities that reoccur these plots show us the structure of a track. For example, diagonal lines and a checkerboard pattern show similarity and repetition. The diagonal line is expected because the track was plotted against itself. 
 
 First: a track from the Kwaito playlist
 
-The timbre similarity matrix shows us some clear patterns. The matrix was able to pick up some of the presentations of the chorus. It looks like the Kwaito track follows some sort of pattern where the song starts with some sort of chorus, followed by a verse, chorus, verse etc.
+The timbre similarity matrix shows us a faint checkerboard pattern, which implies some form of repetition in the track. The matrix was able to pick up some of the presentations of the chorus. It looks like the Kwaito track follows some sort of pattern where the song starts with some sort of chorus, followed by a verse, chorus, verse etc.
 
 The duration of the Kwaito song is 350 seconds, which is pretty long but not uncommon for Kwaito music. Compared to most Hip-Hop tracks however this is relatively long.
 
-### Self-Similarity: The chroma- and timbre features of a 'Classic" *House* track
+### Self-Similarity: The chroma- and timbre features of a 'Classic' **House** track
 
 ```{r}
 house_typisch <-
@@ -307,11 +309,15 @@ bind_rows(
 ```
 
 ***
-The House track 'Big Fun', from Inner City is a classic. Looking at the matrix we can see repetition most of all. After 100 sec the rather famous break comes in. The synthesizers in the track drop out completely for about 20 seconds, after this little interlude the synths come back hard and the party can start again. This break can be seen in both the chroma- and the timbre matrix. In contrast to the Kwaito Matrix we don't really see a chorus or verse in this one. 
+
+Second: a track from the House playlist. 
+
+The House track 'Big Fun', from Inner City is a classic. Both plots show a clear cross in the middle. Around the 100 second mark there is a significant chroma and timbre difference. This is because after 100 sec a rather abrubt break comes in. The synthesizers in the track drop out completely, and after about 20 second the synths come back in and the party can start again. This break can be seen in both the chroma- and the timbre matrix. In contrast to the Kwaito Matrix we saw earlier we don't really see a chorus or verse in this one. 
+
 The duration of the House track is just over 200 seconds, which is not too long for a House track. Often tracks in this genre have a repetitive intro and outro which is used to mix the track with another. I expect there to be a longer version as well that is played more in clubs.
 
 
-### Self-Similarity: The chroma- and timbre features of a 'Classic" *Hip Hop* track
+### Self-Similarity: The chroma- and timbre features of a 'Classic" **Hip Hop** track
 
 ```{r}
 hip_typisch <-
@@ -360,7 +366,8 @@ bind_rows(
 ```
 
 ***
-We are looking at a 'Classic' Hip Hop track. The track goes by the title 'What's the Difference' and comes from the artist Dr. Dre. The matrices are able to pick up some of pattern, including the presentations of the chorus. It seems Hip-Hop song follows a similar pattern as the Kwaito song, with some sort of chorus, followed by a verse, chorus etc.
+
+Third: a track from the Hip-Hop playlist. We are looking at the classic Hip-Hop track 'What's the Difference' from Dr. Dre. This matrices show the most clear checkerboard we have seen until now. The matrices are able to pick up a pattern including the presentations of the chorus. It seems Hip-Hop song follows a similar pattern as the Kwaito song, with some sort of chorus, followed by a verse, chorus etc.
 
 The duration of 'What's the Difference' is nearly 250 seconds. This is pretty long for Hip-Hop, but not uncommon. Hip-Hop tracks from around the 'Dr Dre era' also were a bit longer compared to Hip-Hop nowadays.
 
@@ -490,18 +497,19 @@ all_three_genres_tree %>% get_pr()
 *** 
 
 This classification algorithm is going to make predictions after the training. For me to be able to make a difference between Kwaito, House and Hip-Hop, I need to know for every track what it actually is. The classification algorithm is going to make a prediction for a new track to whether the track is Kwaito, House and Hip-Hop. Then, the question remains: how good is my classifier?
-To get the most accurate picture of what my classifier is doing I actually want to look at these per class. So if I want to compare Kwaito, House and Hip-Hop, I want to know for Hip-Hop what is my recall and what is my precision, for House what is my recall what is my precision etc.
-What do these mean? Well there are all based on the confusion matrix. This matrix is basically breaking things down into 4 possibilities. So you look at the so called ground truth class, what is it really?
-The difference between precision and recall is which mistakes you look at. These numbers are not the same. If you have very good recall, often the precision is not so great. Often if you have good precision, recall not so good. So, precision is when you look only at just the predictions, so of everything my classifier said was Hip Hop, how many of those really are Hip Hop? Recall is when you flip precision around. If I look at everything in my corpus that actually is Hip Hop, and how many of those did the classifier find?
+To get the most accurate picture of what my classifier is doing I actually want to look at these per class. So if I want to compare Kwaito, House and Hip-Hop, I want to know for Hip-Hop what is my recall and what is my precision, for House what is my recall what is my precision etc. What do these mean? Well there are all based on the confusion matrix. 
 
-Now, we evaluate. Looking at the table we can see the classifier did a pretty good job. It was pretty accurate in predicting the songs genre. This would suggest all three genres, looking at their Spotify features, are not so similar after all. This is interesting in light of our research question, where Kwaito is often described as the fusion output of House and Hip-Hop.
+This matrix is basically breaking things down into 4 possibilities. So you look at the so called ground truth class, what is it really? The difference between precision and recall is which mistakes you look at. These numbers are not the same. If you have very good recall, often the precision is not so great. Often if you have good precision, recall not so good. So, precision is when you look only at just the predictions, so of everything my classifier said was Hip Hop, how many of those really are Hip Hop? Recall is when you flip precision around. If I look at everything in my corpus that actually is Hip Hop, and how many of those did the classifier find?
+
+Now, we evaluate. Looking at the table we can see the classifier did a pretty good job. It was actually very accurate in predicting the songs genre. This would suggest all three genres, looking at their Spotify features, are not so similar after all. 
 
 ### Conclusion
 
-Defining Kwaito as a genre has not been proved easy. It was however a very interesting case study, showing all the ways of analyzing music and the variety of interpretations one can have of a musical genre. In this portfolio we explored the musical boundaries of Kwaito and hoped to discover more about it's relation to other genres like Hip-Hop and House. Where Kwaito is labeled by some as 'South African Hip-Hop' and by others as a 'slowed down version of House', I would agree with people saying it is "just Kwaito, and you can't compare it to anything!". 
+Defining Kwaito as a genre has not been proven easy! It was however a very interesting case study, showing all the ways of analyzing music and the variety of interpretations one can have of a musical genre. In this portfolio we explored the musical boundaries of Kwaito and hoped to discover more about it's relation to other genres like Hip-Hop and House. Where Kwaito is labeled by some as 'South African Hip-Hop' and by others as a 'slowed down version of House', I would agree with people saying it is "just Kwaito, and you can't compare it to anything!". 
 
 The Spotify API provided us with varies ways to show Kwaito's uniqueness. Looking at the tempo feature we could see Kwaito has it's own range in BPM, significantly different from House and Hip-Hop. The comparison of the Kwaito version of a classic Hip-Hop track also showed us the originality of Kwaito. Most convincing to me however was the classification tool. We could see the classifier did a very good job in predicting the songs genre. This would suggest all three genres, looking at their Spotify features, are unique in it's kind. 
 
 Finally, we tried to use this portfolio for the evaluation of the Spotify API. 
-We took the opportunity to test and evaluate the possibilities and limitations of the Spotify API. First of all I want to say it is a very fun tool to use and
+We took the opportunity to test and evaluate the possibilities and limitations of the Spotify API. First of all I want to say it is a very fun tool to use and it gives endless possibilities. While this is great, it could also be a pitfall. Sometimes you can get caught up in a single track-feature with the risk of getting in tunnel vision, making causal relationships that might not be there. If you want to compare whole genres of music it is therefore important to keep an overview. Sometimes taking a step back and thinking is this relevant, or asking yourself if your assumptions are correct can help to keep your head strait. A background in statistics would be very helpful in this all I guess. 
 
+But in the end, Spotify making this API available for everyone without any certifications is also what makes it so beautiful. In a world where more and more music is based on one platform such as Spotify I think this is a blessing. Making this data available for everyone provides endless possibilities to study the music we love.
