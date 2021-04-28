@@ -29,20 +29,17 @@ library(compmus)
 {data-width=600}
 -----------------------------------------------------------------------
 
-### Kwaito. A computational analysis of the South African (sub)genre
+### Kwaito. A computational analysis of the South African (sub)genre {data-commentary-width=500}
 
-***
 <div style="max-width:600px; margin: 0 auto;">
 <h2>Kwaito</h2>
 
 
-This computational analysis explores the musical features of "Kwaito", a South African music genre that emerged in Johannesburg during the 1990s. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people argue it is "just Kwaito, and you can't compare it to anything". The exact roots have remained a guess for most until today. In this musicological analysis I'll try to reveal some of Kwaito's mystery, by looking at the Spotify features of typical Kwaito music. These will then be compared to other related styles of music that came up around that time.
+This computational analysis explores the musical features of "Kwaito", a South African music genre that emerged in Johannesburg during the 1990s. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people argue it is "just Kwaito, and you can't compare it to anything". It's exact roots have remained a guess for most people still today. In this musicological analysis I'll try to reveal some of Kwaito's mystery, by looking at the Spotify features of typical Kwaito music. These will then be compared to other related styles of music that came up around that time.
 
-In the following tabs you’ll find a data analysis of Spotify’s track level features such as tempo, valence and danceability. We’ll also inspect the chroma features of classic Kwaito songs and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining different forms of musical analysis we hope to gain insights in the characteristics of the true Kwaito sound. Through broad range of analytic scopes we also hope to discover to what and to what extend Kwaito links to other musical styles, like the two already mentioned. A third objective for this project is to use the process to evaluate and test the possibilities and limitations of the Spotify API.
+In the following tabs you’ll find a data analysis of Spotify’s track level features such as tempo, valence and danceability. We’ll also inspect the chroma features of classic Kwaito songs and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining different forms of musical analysis we hope to gain insights in the characteristics of the Kwaito sound. Through a broad range of analytic scopes we hope to discover to what and to what extend Kwaito links to other musical styles, like the two already mentioned. A third objective for this project is to use the process to evaluate and test the possibilities and limitations of the Spotify API.
 
-### A brief history of Kwaito
-
-***
+### A brief history of Kwaito {data-commentary-width=500}
 
 <div style="max-width:600px; margin: 0 auto;">
 <h2>A brief history</h2>
@@ -54,9 +51,12 @@ Kwaito was originally heard as simply slowed-down house music. The repetitive fo
 
 Defining Kwaito as a musical genre seems to be a struggling process still today, making it a fascinating and compelling subject of research. In this portfolio we'll explore the musical boundaries of the South African (sub)genre and try to reveal it's relation to more classical styles like Hip-Hop and House. Finally, in our search of the true Kwaito sound, we'll take the opportunity to test and evaluate the possibilities and limitations of the Spotify API.
 
-### Working with Spotify API
+### Working with Spotify API. A variety of track-level features {data-commentary-width=500}
 
-*** 
+<div style="max-width:600px; margin: 0 auto;">
+<h2>Working with Spotify API</h2>
+
+
 The Spotify API offers a variety of track-level features for all music on Spotify. Because of the enormous amount of data that is accessible through the API, it is important to consider only the most relevant options for the study. The plot shows a number of track-level features from the three playlists, each representing their own musical style. Respectively the genres Hip-Hop, Kwaito and House are compared. All three playlists contain a selection of 50 tracks that are supposed to be representative for the genre. Of course we should keep in mind that a musical genre is a complex social construct that has shifting boundaries. For this study I chose playlists that have got a reasonable 'following' on Spotify. This choice is deliberate, building on Sociological theories that argue musical genre in itself, is a social construct which exists by the legitimacy of people, and grows more solid as it gets more followers and eventually consolidates over time. The playlists consists of a relatively clearly demarcated selection of tracks that positions itself within the boundaries of the genre. 
 
 For this study I chose the following track-level features: 
@@ -69,7 +69,7 @@ The **speechiness** feature covers the **x-axes** and the **tempo** feature the 
 **Danceability**. The value for danceability is shown by lightness of color, lighter being valued as more danceable. This seemed like a relevant feature, since dance culture is closely linked to the cultural norms of the three genres we are focusing on.
 
 
-### Hip-Hop, House or Kwaito? Comparing the track-level features {data-heith=300}
+### Hip-Hop, House or Kwaito? Comparing the track-level features {data-commentary-width=500}
 
 ```{r}
 
@@ -367,7 +367,9 @@ bind_rows(
 
 ***
 
-Third: a track from the Hip-Hop playlist. We are looking at the classic Hip-Hop track 'What's the Difference' from Dr. Dre. This matrices show the most clear checkerboard we have seen until now. The matrices are able to pick up a pattern including the presentations of the chorus. It seems Hip-Hop song follows a similar pattern as the Kwaito song, with some sort of chorus, followed by a verse, chorus etc.
+Third: a track from the Hip-Hop playlist. 
+
+We are looking at the classic Hip-Hop track 'What's the Difference' from Dr. Dre. This matrices show the most clear checkerboard we have seen until now. The matrices are able to pick up a pattern including the presentations of the chorus. It seems Hip-Hop song follows a similar pattern as the Kwaito song, with some sort of chorus, followed by a verse, chorus etc.
 
 The duration of 'What's the Difference' is nearly 250 seconds. This is pretty long for Hip-Hop, but not uncommon. Hip-Hop tracks from around the 'Dr Dre era' also were a bit longer compared to Hip-Hop nowadays.
 
@@ -503,13 +505,16 @@ This matrix is basically breaking things down into 4 possibilities. So you look 
 
 Now, we evaluate. Looking at the table we can see the classifier did a pretty good job. It was actually very accurate in predicting the songs genre. This would suggest all three genres, looking at their Spotify features, are not so similar after all. 
 
-### Conclusion
+### Conclusion {data-commentary-width=500}
 
-Defining Kwaito as a genre has not been proven easy! It was however a very interesting case study, showing all the ways of analyzing music and the variety of interpretations one can have of a musical genre. In this portfolio we explored the musical boundaries of Kwaito and hoped to discover more about it's relation to other genres like Hip-Hop and House. Where Kwaito is labeled by some as 'South African Hip-Hop' and by others as a 'slowed down version of House', I would agree with people saying it is "just Kwaito, and you can't compare it to anything!". 
+Defining Kwaito as a genre has not been proven easy. It was however a very interesting case study, showing all the ways of analyzing music and the variety of interpretations one can have of a musical genre. In this portfolio we explored the musical boundaries of Kwaito and hoped to discover more about it's relation to other genres like Hip-Hop and House. Where Kwaito is labeled by some as 'South African Hip-Hop' and by others as a 'slowed down version of House', I would agree with people saying it is "just Kwaito, and you can't compare it to anything!". 
+
 
 The Spotify API provided us with varies ways to show Kwaito's uniqueness. Looking at the tempo feature we could see Kwaito has it's own range in BPM, significantly different from House and Hip-Hop. The comparison of the Kwaito version of a classic Hip-Hop track also showed us the originality of Kwaito. Most convincing to me however was the classification tool. We could see the classifier did a very good job in predicting the songs genre. This would suggest all three genres, looking at their Spotify features, are unique in it's kind. 
 
+
 Finally, we tried to use this portfolio for the evaluation of the Spotify API. 
 We took the opportunity to test and evaluate the possibilities and limitations of the Spotify API. First of all I want to say it is a very fun tool to use and it gives endless possibilities. While this is great, it could also be a pitfall. Sometimes you can get caught up in a single track-feature with the risk of getting in tunnel vision, making causal relationships that might not be there. If you want to compare whole genres of music it is therefore important to keep an overview. Sometimes taking a step back and thinking is this relevant, or asking yourself if your assumptions are correct can help to keep your head strait. A background in statistics would be very helpful in this all I guess. 
+
 
 But in the end, Spotify making this API available for everyone without any certifications is also what makes it so beautiful. In a world where more and more music is based on one platform such as Spotify I think this is a blessing. Making this data available for everyone provides endless possibilities to study the music we love.
