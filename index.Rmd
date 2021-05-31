@@ -1,13 +1,14 @@
 ---
 title: "Computational Musicology Portofolio"
 author: "Kalle"
-date: "2/10/2021"
+date: "4/23/2021"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     social: menu
     storyboard: true
-    theme: flatly
+    theme: united
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
@@ -29,35 +30,43 @@ library(compmus)
 {data-width=600}
 -----------------------------------------------------------------------
 
-### Kwaito. A computational analysis of the South African (sub)genre {data-commentary-width=500}
+### Kwaito. A computational analysis of the South African (sub)genre {data-commentary-width=600}
 
+![](/Users/Kalle/Desktop/Test/ro.jpeg){width=600px}
+
+***
 <div style="max-width:600px; margin: 0 auto;">
 <h2>Kwaito</h2>
 
+This computational analysis explores the musical features of "Kwaito", a South African music genre that emerged in Johannesburg during the 1990s. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people argue it is "just Kwaito, and you can't compare it to anything". The exact roots have remained a guess for most until today. In this musicological analysis I'll try to reveal some of Kwaito's mystery, by looking at the Spotify features of typical Kwaito music. These will then be compared to other related styles of music that came up around that time.
 
-This computational analysis explores the musical features of "Kwaito", a South African music genre that emerged in Johannesburg during the 1990s. Kwaito is labeled by some as 'South African Hip-Hop'. Others say it's more like slowed down House music. Some people argue it is "just Kwaito, and you can't compare it to anything". It's exact roots have remained a guess for most people still today. In this musicological analysis I'll try to reveal some of Kwaito's mystery, by looking at the Spotify features of typical Kwaito music. These will then be compared to other related styles of music that came up around that time.
-
-In the following tabs you’ll find a data analysis of Spotify’s track level features such as tempo, valence and danceability. We’ll also inspect the chroma features of classic Kwaito songs and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining different forms of musical analysis we hope to gain insights in the characteristics of the Kwaito sound. Through a broad range of analytic scopes we hope to discover to what and to what extend Kwaito links to other musical styles, like the two already mentioned. A third objective for this project is to use the process to evaluate and test the possibilities and limitations of the Spotify API.
+In the following tabs you’ll find a data analysis of Spotify’s track level features such as tempo, valence and danceability. We’ll also inspect the chroma features of classic Kwaito songs and touch upon the loudness and timbre features and look in to the structural segments, beats and rhythm. Combining different forms of musical analysis we hope to gain insights in the characteristics of the true Kwaito sound. Through broad range of analytic scopes we also hope to discover to what and to what extend Kwaito links to other musical styles, like the two already mentioned. A third objective for this project is to use the process to evaluate and test the possibilities and limitations of the Spotify API.
 
 ### A brief history of Kwaito {data-commentary-width=500}
 
+
+![](/Users/Kalle/Desktop/Test/btkwaito1.png){width=200px}
+
+
+***
 <div style="max-width:600px; margin: 0 auto;">
-<h2>A brief history</h2>
-
-
+<h2>A brief history of Kwaito</h2>
 The sound of Kwaito developed in the late 1980’s in the townships of South Africa and came to be the soundtrack for a youth culture movement. With it's peak in the 90's the Kwaito sound also started to spread globally. From then on, collectors and diggers across the globe started discovering the genre and finding its endless source of inspiration. As they do, Kwaito is still fuelling dance floors around the world to this day. The broad and varied form of Kwaito makes it very hard to encapsulate completely as a genre. Kwaito fuses elements of traditional South African music with other genres throughout the African diaspora.
 
 Kwaito was originally heard as simply slowed-down house music. The repetitive four on the floor beat and swung high hat patterns are some of the characteristics that closely link to the classic structure of house music. What's for sure is that it holds the power to make dance floors shake. In general the sound is known for it's danceability, making it's way to the international clubs and festival circuit. Others recognise a strong hip-hop influence. The late ‘80s the township slang of South Africa has formed the backbone of Kwaito. Reflecting on social changes and cavernous cracks in South-African society, Kwaito is labeled by some as 'South African Hip-Hop'. It's influence becomes evident as a number of Kwaito songs have clear references to American hip-hop forms, paying homage to artists like Snoop Dogg and Grandmaster Flash.
 
-Defining Kwaito as a musical genre seems to be a struggling process still today, making it a fascinating and compelling subject of research. In this portfolio we'll explore the musical boundaries of the South African (sub)genre and try to reveal it's relation to more classical styles like Hip-Hop and House. Finally, in our search of the true Kwaito sound, we'll take the opportunity to test and evaluate the possibilities and limitations of the Spotify API.
+Defining Kwaito as a musical genre seems to be a struggling process still today, making it a fascinating and compelling subject of research. In this portfolio we'll explore the musical boundaries of the South African (sub)genre and try to reveal it's relation to more classical styles like Hip-Hop and House. Finally, in search of the true Kwaito sound, we'll take the opportunity to test and evaluate the possibilities and limitations of the Spotify API.
 
-### Working with Spotify API. A variety of track-level features {data-commentary-width=500}
 
+### Working with Spotify API. A variety of track-level features{height=300} {data-commentary-width=800}
+
+![](/Users/Kalle/Desktop/Test/ScreenshotAPI.png)
+
+***
 <div style="max-width:600px; margin: 0 auto;">
 <h2>Working with Spotify API</h2>
 
-
-The Spotify API offers a variety of track-level features for all music on Spotify. Because of the enormous amount of data that is accessible through the API, it is important to consider only the most relevant options for the study. The plot shows a number of track-level features from the three playlists, each representing their own musical style. Respectively the genres Hip-Hop, Kwaito and House are compared. All three playlists contain a selection of 50 tracks that are supposed to be representative for the genre. Of course we should keep in mind that a musical genre is a complex social construct that has shifting boundaries. For this study I chose playlists that have got a reasonable 'following' on Spotify. This choice is deliberate, building on Sociological theories that argue musical genre in itself, is a social construct which exists by the legitimacy of people, and grows more solid as it gets more followers and eventually consolidates over time. The playlists consists of a relatively clearly demarcated selection of tracks that positions itself within the boundaries of the genre. 
+The Spotify API offers a variety of track-level features for all music on Spotify. Because of the enormous amount of data that is accessible through the API, it is important to consider only the most relevant options for the study. The plot that is shown in the following tab shows a number of track-level features from three playlists, each representing their own musical style. Respectively the genres Hip-Hop, Kwaito and House are compared. All playlists contain a selection of 50 tracks that are supposed to be representative for the genre. Of course we should keep in mind that a musical genre is a complex social construct that has shifting boundaries. For this study I chose playlists that have got a reasonable 'following' on Spotify. This choice is deliberate, building on Sociological theories that argue musical genre in itself, is a social construct which exists by the legitimacy of people, and grows more solid as it gets more followers and eventually consolidates over time. The playlists consists of a relatively clearly demarcated selection of tracks that positions itself within the boundaries of the genre. 
 
 For this study I chose the following track-level features: 
 
@@ -67,7 +76,6 @@ For this study I chose the following track-level features:
 The **speechiness** feature covers the **x-axes** and the **tempo** feature the **y-axes**. The 'tempo' feature, seemed to be the best option in my case. Tempo in general is a strong feature because it carries a high amount of deterministic value. The tempo of a song has proved to be an essential factor in the way people give meaning to music and how they perceive it, consciously as well as unconsciously. Tempo can also be seen as representative because it can easily be used as tool to distinguish a genre from others in an easy, quantifiable manner that is widely known and used.
 
 **Danceability**. The value for danceability is shown by lightness of color, lighter being valued as more danceable. This seemed like a relevant feature, since dance culture is closely linked to the cultural norms of the three genres we are focusing on.
-
 
 ### Hip-Hop, House or Kwaito? Comparing the track-level features {data-commentary-width=500}
 
@@ -132,7 +140,7 @@ When we look at speechiness we are also seeing some variation between the genres
 
 As for the danceability feature you can see there is far more value in Hip Hop and Kwaito tracks than in House tracks. This is remarkable because House music has a strong club culture. House as a genre I would associate most with dancing, as House tracks are usually created for this purpose. Usually in my experience if there is House music played, regardless of where or the occasion, there is dancing. When Hip-Hop is played for example, again based on my own experience, this is not as often the case. Spotify describes danceability as 'how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity'. While there is something to say for the fact that dynamic music with lots of action and changes is making people move, it could be they underestimate the power of stable rythm repetitiveness that makes people dance as if in a trance.
 
-### About tempo! {data-width=600}
+### About tempo.. {data-width=600}
 
 ```{r}
 get_tidy_audio_analysis('4PyhlL1vrSvPlhYLdphszr') %>% 
@@ -148,11 +156,12 @@ get_tidy_audio_analysis('4PyhlL1vrSvPlhYLdphszr') %>%
 
 Tempograms provide insight in how tempo evolves during a musical piece. The x-axis contains the song duration and the y-axis contains the measured tempo in beats per minutes. Brighter areas indicate larger amounts of energy. 
 
-I was curious if Kwaito songs ar produced live or that it is fully digital and therefore synchronized to a fixed grid. 
+I was curious whether Kwaito songs are produced live or, fully digitally and therefore synchronized to a fixed grid. 
 
-The tempogram is of a Kwaito song from the playlist. We are seeing a steady line that doesn't really change over time. This would suggest that the tempo remains stable over the course of the song. This indicates Kwaito is digitally produced rather than recorded with live instruments. To be sure I did a tempogram for a few other tracks and this seemed the case for most. 
+The tempogram shows us a Kwaito song from the playlist. We are seeing a pretty steady line that doesn't change over time. This would suggest that the tempo remains stable over the course of the song. This would suggest Kwaito is digitally produced rather than recorded with live instruments. To be sure I did a tempogram for a few other tracks. The results were about the samen for the other cases. 
 
-The tempo in bpm in this tempogram seems to be around 440. This is obviously very unlikely. Sometimes the tempo of a song is multiplied. With downtempo songs like soul or slow Hip-Hop this is often the case. It shows why beat analysis could be problematic. A fix for this might be to set a range in bpm of which you are sure the track must be in, for example between 50-200 beats per minutes. I have seen programs, mostly DJ software, that actually are pretty good at bpm estimation. I guess this is one of the things that can therefore be improved in the Spotify API.
+The tempo in bpm in this tempogram seems to be around 440. This is obviously very unlikely the real amount of beats per minute. Sometimes the tempo of a song is estimated in duplicate or multiple times. With downtempo songs like soul or slow Hip-Hop this happens some times. It shows why beat analysis could be problematic. A fix for this could be to set a range of bpm of which you are sure the track must be in between, for example between 50 and 200 beats per minutes. I have seen programs, for example DJ software, that actually are pretty good at bpm estimation. I guess this is one of the things that can be improved in the Spotify API.
+
 
 ### Dynamic Time Warping, B.I.G vs Kwaito version
 
@@ -191,6 +200,10 @@ compmus_long_distance(
   scale_fill_viridis_c(guide = NULL)
 ```
 
+
+***
+![](/Users/Kalle/Desktop/Test/big_poppa.jpeg){width=100px} VS  ![](/Users/Kalle/Desktop/Test/Sandy.jpeg){width=100px}
+
 ***
 
 One of the things you can do with Spotify API is visual Dynamic Time Warping. With Dynamic Time Warping you can compare the pitches of two tracks in a single visualization. You can for example line up a cover version of a song with the original track or even another cover version of the song, and see how they differ from each other. 
@@ -199,8 +212,45 @@ To see if Kwaito differs a lot from Hip-Hop we are doing a test case with a clas
 
 A diagonal pattern would denote similarities between the two tracks. This is not observed, which implies significant differences. This could suggest that the Kwaito cover is a lot different from a Hip-Hop song. However, we can't really generalize this to say all Kwaito songs differ a lot from Hip-Hop tracks. 
 
-The fact that two tracks using the same melody sound so different you could see as an indication of their independence to each other. On the other hand, you could say the use of a classic Hip-Hop sample by a Kwaito artist is an indication that there is a linkage between the genres. 
+The fact that two tracks using the same melody sound so different you could see as an indication of their independence to each other. On the other hand, you could say the use of a classic Hip-Hop sample by a Kwaito artist is an indication that there is a linkage between the genres.
 
+### Cepstrogram
+
+```{r}
+
+laatste <-
+  get_tidy_audio_analysis("4KGX6Nj07UkJlaI1pwkGu2") %>%
+  select(segments) %>%
+  unnest(segments) 
+  
+laatste %>%
+  arrange(start) %>%
+  mutate(timbre = map2(timbre, lag(timbre), `-`)) %>%
+  slice(-1) %>%
+  compmus_gather_timbre() %>%
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = pmax(0, value)
+    )
+  ) +
+  geom_tile() +
+  scale_fill_viridis_c(guide = "none") +
+  xlim(0, 30) +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  theme_classic()
+```
+
+
+***
+
+The Cepstrogram shows different timbre features for a particular segment. By zooming in and analyzing a smaller piece of audio we might get new insights. The song we're seeing is from the Kwaito playlist: 'I Love Music' by Lebo Mathosa. 
+
+Looking at the cepstogram we see the features c02-c06 are most prevalent. There is a clear change in these dominant timbre features at the 15 seconds mark. Listening to the track you can tell it's the piano coming in. After this all of the prevelant features faint a little. Some of the features are more clearly defined then others. -c02 represents mostly low frequencies, -c03 mid frequencies, and -c04 represents the shorter and sharper sounding timbre features, called 'attack'. 
+
+At the start of the song we hear a 4/4 percussion beat, which I would associate most with House Music. The bassdrum sounds deep and is pretty dominant. This explains prevalence of -c02/-c03 in the beginning. Attack speaks for the short punchy kick in the beginning I would guess. The percussion and bass are pretty dominant in the first half of the segment. At 0.15 sec the piano comes in. At this point the frequency spectrum has to be shared also with the piano frequencies. The lower- and mid frequencies therefore become less dominant in the second half of the segment. An explanation could be that lower frequencies were cut off by a filter to make room for the piano frequencies so the piano can really pop out from the start.
 
 ### Self-Similarity: The chroma- and timbre features of a 'Classic" **Kwaito** track
 
@@ -514,7 +564,7 @@ The Spotify API provided us with varies ways to show Kwaito's uniqueness. Lookin
 
 
 Finally, we tried to use this portfolio for the evaluation of the Spotify API. 
-We took the opportunity to test and evaluate the possibilities and limitations of the Spotify API. First of all I want to say it is a very fun tool to use and it gives endless possibilities. While this is great, it could also be a pitfall. Sometimes you can get caught up in a single track-feature with the risk of getting in tunnel vision, making causal relationships that might not be there. If you want to compare whole genres of music it is therefore important to keep an overview. Sometimes taking a step back and thinking is this relevant, or asking yourself if your assumptions are correct can help to keep your head strait. A background in statistics would be very helpful in this all I guess. 
+We took the opportunity to test and evaluate the possibilities and limitations of the Spotify API. First of all I want to say it is a very fun tool to use and it gives endless possibilities. While this is great, it could also be a pitfall. Sometimes you can get caught up in a single track-feature with the risk of getting in tunnel vision, making causal relationships that might not be there. If you want to compare whole genres of music it is therefore important to keep an overview. Sometimes taking a step back and thinking is this relevant, or asking yourself if your assumptions are correct can help to keep your head strait. In general, I would argue a strong base of statistical knowledge is very valuable in studying this kind of musical data.
 
 
 But in the end, Spotify making this API available for everyone without any certifications is also what makes it so beautiful. In a world where more and more music is based on one platform such as Spotify I think this is a blessing. Making this data available for everyone provides endless possibilities to study the music we love.
